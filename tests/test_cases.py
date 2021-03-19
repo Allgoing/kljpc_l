@@ -10,7 +10,7 @@ from common.httpClient import HttpClient
 
 
 class TestCase:
-    casedata = data.read_case_data(sheet_name='sheet1')
+    casedata = data.read_case_data(sheet_name='manage')
 
     @allure.feature('宠物店')
     @allure.story('宠物管理')
@@ -27,8 +27,15 @@ class TestCase:
         client.headers = json.loads(cases[Case.HEADERS])
         client.set_body(cases[Case.BODY])
         client.send()
+        a = json.loads(cases[Case.MESSAGE])
+        b = a['check']
+        use_checkpoint.check_status_code(cases[Case.STATUS_CODE], client.status_code)
+        for i in b:
+            use_checkpoint.check(check_type=i['method'], expected_value=i['exp'], json_data=client.json, node_path=i['path'], message=i['message'])
 
-        assert int(cases[Case.STATUS_CODE]) == client.status_code
+        # if cases[Case.MESSAGE]:
+
+        # assert int(cases[Case.STATUS_CODE]) == client.status_code
     
     # @pytest.mark.parametrize('cases', data)
     # def test_case002(self, cases):

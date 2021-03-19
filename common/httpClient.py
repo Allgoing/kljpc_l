@@ -78,7 +78,7 @@ class HttpClient(object):
     @property
     def json(self):
         if self.__response is not None:
-            return self.__response.json
+            return self.__response.json()
 
     @property
     def status_code(self):

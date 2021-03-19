@@ -27,7 +27,7 @@ class ExcelParser(object):
         '''
         获取sheet对象
         :param sheet_name:sheet名称
-        :return: 放回sheet对象
+        :return: 返回sheet对象
         '''
 
         if self.book is not None:
@@ -208,7 +208,12 @@ if __name__ == '__main__':
 
     pass
 
-    # e = ExcelParser('test1.xlsx')
+    e = ExcelParser('testcases.xlsx')
+    s = e.get_sheet('python')
+    m = s.merged_cells
+    c = e.get_cell('python',0, 0)
+    print(c)
+
     # sheets = e.get_sheets()
     # print(sheets)
     # print(e.sheet_names())
