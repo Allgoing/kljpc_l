@@ -18,6 +18,7 @@ class Config:
         config.read(Config.__configfile, encoding='UTF-8')
         self.__testcasefile = config.get('TestCaseFile', 'file')
         self.__logpath = config.get('LogPath', 'path')
+        self.__database = config.get('DataBase', 'SQLALCHEMY_DATABASE_URI')
         Config.__flag = True
 
     def __new__(cls, *args, **kwargs):
@@ -37,3 +38,7 @@ class Config:
     @property
     def logPath(self):
         return self.__logpath
+
+    @property
+    def database(self):
+        return self.__database

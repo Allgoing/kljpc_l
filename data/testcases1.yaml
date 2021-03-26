@@ -1,0 +1,65 @@
+v2/pet/2:
+  - case_id: 1
+    title: 注册用例1
+    method: POST
+    url: /register
+    data:
+      account: '123456789'
+      pwd: '12345678'
+    expect:
+      code: 0
+      msg: OK
+  - case_id: 2
+    title: 注册用例2
+    method: POST
+    url: /register
+    data:
+      account: '123456788'
+      pwd: '12345678'
+      type: 1
+    expect:
+      code: 0
+      msg: OK
+login:
+  - case_id: 1
+    title: 登陆用例1
+    method: POST
+    url: /login
+    data:
+      account: '123456789'
+      pwd: '12345678'
+    expect:
+      code: 0
+      msg: OK
+  - case_id: 2
+    title: 登陆用例2
+    method: POST
+    url: /login
+    data:
+      account: '123456788'
+      pwd: '12345678'
+    expect:
+      code: 0
+      msg: OK
+content/newHome:
+  - moudle: app首页接口
+      header:
+        Accept: application/json
+      body:
+      bodytype:
+      status: 200
+      message:
+        check:
+          - method: exist
+            exp: true
+            path: $..headerImages
+            message:
+            sql:
+          - method: count
+            exp: 11
+            path: $..matchLive[*]
+            message:
+            sql:
+      expect:
+      result:
+      tester:

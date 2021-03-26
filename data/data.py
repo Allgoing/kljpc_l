@@ -1,6 +1,8 @@
 # -- coding: utf-8 --
 import os
 
+import yaml
+
 from common.excelParse import ExcelParser
 
 
@@ -25,6 +27,21 @@ def read_case_data(file=None, sheet_name='sheet1', row=0, col=0):
     list_data = list(zip(data, titles))
 
     return list_data
+
+
+def read_case_data_to_yaml(file=None):
+    yaml.warnings({'YAMLLoadWarning': False})
+    if file:
+        with open(file, encoding='utf-8') as f:
+            x = yaml.load(f)
+            case_data = x
+            return case_data
+    else:
+        yaml_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'testcases.yaml')
+        with open(yaml_file_path, encoding='utf-8') as f:
+            x = yaml.load(f)
+            case_data = x
+            return case_data
 
 
 class Case:
@@ -58,9 +75,11 @@ class Case:
 
 
 if __name__ == '__main__':
-    pass
-    # a = read_case_data(sheet_name='sheet1')
-    # print(len(a))
+    # pass
+    a = read_case_data_to_yaml()
+    print(a['content/newHome'])
+    # a = read_case_data(sheet_name='manage')
+    # print(a)
     # a = ExcelParser(r'/Users/work/kljTest/kljpc/data/testcases.xlsx')
     # print(a.get_cols(sheet='sheet1', col_num=2))
     # b = read_case_data(sheet_name='sheet1')

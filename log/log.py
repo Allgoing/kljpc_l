@@ -54,9 +54,9 @@ class Log:
 
 
 logger = Log().Logger
-print(datetime.date.today())
-logger.info('哈哈')
-logger.error('嘻嘻')
-logger.debug('shasha')
-logger.critical('完了')
+# print(datetime.date.today())
+# logger.info('哈哈')
+# logger.error('嘻嘻')
+# logger.debug('shasha')
+# logger.critical('完了')
 
